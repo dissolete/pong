@@ -25,7 +25,7 @@ OBJECTS = $(patsubst %,$(BIN)/%, $(notdir $(CRSOURCE:.cpp=.o)))
 APPOBJECTS = $(patsubst %,$(BIN)/%, $(notdir $(APPSOURCE:.cpp=.o)))
 
 CC = g++ -std=c++11
-CFLAGS = -I$(INC) -c
+CFLAGS = -I$(INC) -I$(APPINC) -c
 
 link: $(OBJECTS) $(APPOBJECTS)
 	@echo "Linking..."
