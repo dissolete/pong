@@ -54,7 +54,7 @@ $(BIN)/CRState.o: $(SRC)/CRState.cpp $(INC)/CRState.hpp
 $(BIN)/SplashState.o: $(SRC)/SplashState.cpp $(INC)/SplashState.hpp
 	$(CC) $(CFLAGS) $(SRC)/SplashState.cpp -o $(BIN)/SplashState.o
 
-.PHONY: run clean help
+.PHONY: run clean clean-o help
 
 run: $(BIN)/$(TARGET)
 	$(BIN)/$(TARGET)
