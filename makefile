@@ -8,7 +8,7 @@ SRC = CRE/src
 INC = CRE/include
 BIN = App/bin
 APPSRC = App/src
-APPINC = App/inc
+APPINC = App/include
 
 SFML = -lsfml-graphics -lsfml-window -lsfml-window -lsfml-system
 
@@ -42,6 +42,9 @@ link: $(OBJECTS) $(APPOBJECTS)
 $(BIN)/main.o: $(APPSRC)/main.cpp $(APPINCLUDES) $(CRINCLUDES)
 	$(CC) $(CFLAGS) $(APPSRC)/main.cpp -o $(BIN)/main.o
 
+$(BIN)/PongApp.o: $(APPSRC)/PongApp.cpp $(APPINC)/PongApp.hpp
+	$(CC) $(CFLAGS) $(APPSRC)/PongApp.cpp -o $(BIN)/PongApp.o
+
 $(BIN)/CRApp.o: $(SRC)/CRApp.cpp $(INC)/CRApp.hpp
 	$(CC) $(CFLAGS) $(SRC)/CRApp.cpp -o $(BIN)/CRApp.o
 
@@ -54,7 +57,7 @@ $(BIN)/CRState.o: $(SRC)/CRState.cpp $(INC)/CRState.hpp
 $(BIN)/SplashState.o: $(SRC)/SplashState.cpp $(INC)/SplashState.hpp
 	$(CC) $(CFLAGS) $(SRC)/SplashState.cpp -o $(BIN)/SplashState.o
 
-.PHONY: run clean clean-o help
+.PHONY: run clean clean-o git-clean help
 
 run: $(BIN)/$(TARGET)
 	$(BIN)/$(TARGET)
@@ -64,6 +67,9 @@ clean:
 
 clean-o:
 	rm -f $(OBJECTS) $(APPOBJECTS)
+
+git-clean:
+	git rm -r $(OBJECTS) $(APPOBJECTS) $(BIN)/$(TARGET)
 
 help:
 	@echo ""
