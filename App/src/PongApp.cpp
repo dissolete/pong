@@ -12,7 +12,11 @@ void PongApp::init_asset_handlers(void)
 
 void PongApp::init_screen_factory(void)
 {
+
+	_window.setKeyRepeatEnabled(false);
+
 	// Add game states here
+	_stateManager.add_active_state(new(std::nothrow) PlayState("PlayState", *this));
 	_stateManager.add_active_state(new(std::nothrow) CRE::SplashState(*this));
 }
 

@@ -2,7 +2,7 @@
 # CODE RED ENGINE MAKEFILE #
 #--------------------------#
 
-TARGET = App
+TARGET = Pong
 
 SRC = CRE/src
 INC = CRE/include
@@ -56,6 +56,9 @@ $(BIN)/CRState.o: $(SRC)/CRState.cpp $(INC)/CRState.hpp
 
 $(BIN)/SplashState.o: $(SRC)/SplashState.cpp $(INC)/SplashState.hpp
 	$(CC) $(CFLAGS) $(SRC)/SplashState.cpp -o $(BIN)/SplashState.o
+
+$(BIN)/PlayState.o: $(APPSRC)/PlayState.cpp $(APPINC)/PlayState.hpp
+	$(CC) $(CFLAGS) $(APPSRC)/PlayState.cpp -o $(BIN)/PlayState.o
 
 .PHONY: run clean clean-o git-clean help
 
