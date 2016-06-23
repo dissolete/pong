@@ -4,6 +4,7 @@
 #include "CRApp.hpp"
 #include "SplashState.hpp"
 #include "PlayState.hpp"
+#include "MenuState.hpp"
 
 class PongApp : public CRE::App
 {

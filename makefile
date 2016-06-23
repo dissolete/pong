@@ -10,7 +10,7 @@ BIN = App/bin
 APPSRC = App/src
 APPINC = App/include
 
-SFML = -lsfml-graphics -lsfml-window -lsfml-window -lsfml-system
+SFML = -lsfml-graphics -lsfml-window -lsfml-system
 
 #---------------------------------------------#
 # DON'T CHANGE ANYTHING BETWEEN THESE ARROWS! #
@@ -59,6 +59,12 @@ $(BIN)/SplashState.o: $(SRC)/SplashState.cpp $(INC)/SplashState.hpp
 
 $(BIN)/PlayState.o: $(APPSRC)/PlayState.cpp $(APPINC)/PlayState.hpp
 	$(CC) $(CFLAGS) $(APPSRC)/PlayState.cpp -o $(BIN)/PlayState.o
+
+$(BIN)/CRTextManager.o: $(SRC)/CRTextManager.cpp $(INC)/CRTextManager.hpp
+	$(CC) $(CFLAGS) $(SRC)/CRTextManager.cpp -o $(BIN)/CRTextManager.o
+
+$(BIN)/MenuState.o: $(APPSRC)/MenuState.cpp $(APPINC)/MenuState.hpp
+	$(CC) $(CFLAGS) $(APPSRC)/MenuState.cpp -o $(BIN)/MenuState.o
 
 .PHONY: run clean clean-o git-clean help
 

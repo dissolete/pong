@@ -18,9 +18,7 @@ namespace CRE
 	{}
 
 	void SplashState::handle_events(sf::Event theEvent)
-	{
-		
-	}
+	{}
 
 	void SplashState::init(void)
 	{
@@ -29,7 +27,8 @@ namespace CRE
 	}
 
 	void SplashState::reinit(void)
-	{}
+	{
+	}
 
 	void SplashState::update(void)
 	{
