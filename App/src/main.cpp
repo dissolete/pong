@@ -13,6 +13,8 @@ int main(int argc, char* argv[])
 	CRE::App * pong = new(std::nothrow) PongApp();
 	assert(NULL != pong and "main() can't create application");
 
+	pong->set_max_updates(1);
+
 	// Execute the application
 	exitCode = pong->run();
 

@@ -73,10 +73,10 @@ class PlayState : public CRE::State
 
 		const int _paddleWidth = 20;
 		const int _paddleHeight = 60;
-		const int _vel = 10;
+		const int _vel = 5;
 
 		int _paddle1Vel, _paddle2Vel, _paddle1Pos, _paddle2Pos, _ballXPos, _ballYPos, 
-				_ballXVel, _ballYVel;
+				_ballXVel, _ballYVel, _p1Score, _p2Score;
 
 		sf::Texture _paddleTexture;
 		sf::Texture _ballTexture;
