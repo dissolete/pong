@@ -72,7 +72,7 @@ void PlayState::reinit(void)
 
 void PlayState::pause(void)
 {
-
+	CRE::State::pause();
 }
 
 void PlayState::resume(void)
@@ -82,6 +82,7 @@ void PlayState::resume(void)
 
 void PlayState::handle_events(sf::Event theEvent)
 {
+
 	// Check if the user presses down a key
 	if( theEvent.type == sf::Event::KeyPressed )
 	{
@@ -112,6 +113,7 @@ void PlayState::handle_events(sf::Event theEvent)
 
 void PlayState::update(void)
 {
+	
 	/////////////////////////////
 	/* Update paddle positions */
 	/////////////////////////////
@@ -244,7 +246,6 @@ void PlayState::update(void)
 
 	// Set the new position of the ball
 	_ball.setPosition(sf::Vector2f(_ballXPos, _ballYPos));
-
 
 }
 
