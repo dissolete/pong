@@ -119,7 +119,19 @@ namespace CRE
 		while(itr != _texts.end()){
 			//if the iterator is on the passed ID, remove that Text
 			if((*itr) -> get_ID() == textID){
+
+				// Get a pointer to this text
+				Text * thisText = (*itr);
+
+				// Remove text from the list
 				_texts.erase(itr);
+
+				// Delete the text object
+				delete thisText;
+
+				// Remove local pointer
+				thisText = NULL;
+
 				//No longer need to loop, assumes each textID is unique
 				break;
 			}

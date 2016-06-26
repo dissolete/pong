@@ -10,7 +10,7 @@ BIN = App/bin
 APPSRC = App/src
 APPINC = App/include
 
-SFML = -lsfml-graphics -lsfml-window -lsfml-system
+SFML = -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-system
 
 #---------------------------------------------#
 # DON'T CHANGE ANYTHING BETWEEN THESE ARROWS! #
@@ -62,6 +62,9 @@ $(BIN)/PlayState.o: $(APPSRC)/PlayState.cpp $(APPINC)/PlayState.hpp
 
 $(BIN)/CRTextManager.o: $(SRC)/CRTextManager.cpp $(INC)/CRTextManager.hpp
 	$(CC) $(CFLAGS) $(SRC)/CRTextManager.cpp -o $(BIN)/CRTextManager.o
+
+$(BIN)/CRSoundManager.o: $(SRC)/CRSoundManager.cpp $(INC)/CRSoundManager.hpp
+	$(CC) $(CFLAGS) $(SRC)/CRSoundManager.cpp -o $(BIN)/CRSoundManager.o
 
 $(BIN)/MenuState.o: $(APPSRC)/MenuState.cpp $(APPINC)/MenuState.hpp
 	$(CC) $(CFLAGS) $(APPSRC)/MenuState.cpp -o $(BIN)/MenuState.o

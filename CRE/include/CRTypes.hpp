@@ -12,8 +12,13 @@ namespace CRE
 {
 	class App;
 	class State;
+
 	class StateManager;
 	class TextManager;
+	class SoundManager;
+
+	class CRMusic;
+	class CRSound;
 	class CRText;
 }
 
