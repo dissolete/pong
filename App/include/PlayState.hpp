@@ -71,6 +71,8 @@ class PlayState : public CRE::State
 
 	private:
 
+		bool _gameOver;
+		
 		const int _paddleWidth = 20;
 		const int _paddleHeight = 60;
 		const int _vel = 5;
