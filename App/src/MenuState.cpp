@@ -28,6 +28,7 @@ void MenuState::init()
 	_theApp._textManager.add_text("EasyMode", "Easy", sf::Vector2f(_theApp._windowWidth / 2, _theApp._windowHeight / 3));
 	_theApp._textManager.add_text("HardMode", "Hard", sf::Vector2f(_theApp._windowWidth / 2, _theApp._windowHeight * 2 / 3));
 
+	_theApp._soundManager.add_song("Theme", "resources/pong_theme.wav", true);
 }
 
 void MenuState::reinit()
@@ -45,6 +46,8 @@ void MenuState::resume()
 {
 	// Resume parent state
 	CRE::State::resume();
+
+	_theApp._soundManager.play_song();
 }
 
 void MenuState::handle_events(sf::Event theEvent)

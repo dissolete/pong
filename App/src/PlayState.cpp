@@ -112,6 +112,8 @@ void PlayState::init(void)
 	}
 	else
 		_theApp.quit(CRE::STATUS_ASSET_COULDNT_BE_LOADED);
+
+	_theApp._soundManager.add_sound("Bounce", "resources/bounce.wav");
 }
 
 void PlayState::reinit(void)
@@ -152,6 +154,9 @@ void PlayState::handle_events(sf::Event theEvent)
 			_theApp._textManager.remove_text("gameOverText");
 			_theApp._textManager.remove_text("p1ScoreText");
 			_theApp._textManager.remove_text("p2ScoreText");
+
+			// remove sound
+			_theApp._soundManager.remove_sound("Bounce");
 		}
 
 
@@ -208,6 +213,10 @@ void PlayState::update(void)
 
 		// Check if ball has touched the left or right side of the screen
 		if( _ballXPos + _ball.getRadius() * 2 > _theApp._windowWidth){//right side
+
+			// Play sound
+			_theApp._soundManager.play_sound("Bounce");
+
 			_p1Score++;
 			//reset position of ball to the player that scored
 			_ballXPos = 20 + _paddleWidth;
@@ -216,11 +225,15 @@ void PlayState::update(void)
 			_ballYVel = -5;
 
 			//Update score text
-			_theApp._textManager.get_text("p1ScoreText") -> setString("Player 1: " + std::to_string(_theApp._statManager.get_difficulty()));//set to _p1Score
+			_theApp._textManager.get_text("p1ScoreText") -> setString("Player 1: " + std::to_string(_p1Score));//set to _p1Score
+
 			if(_p1Score == 7)
 				_gameOver = true;
 
 		} else if(_ballXPos < 0){//left side
+			// Play sound
+			_theApp._soundManager.play_sound("Bounce");
+
 			_p2Score++;
 			//reset position of ball to the player that scored
 			_ballXPos = _theApp._windowWidth - _paddleWidth - 20 - (2 * _ball.getRadius());
@@ -232,9 +245,13 @@ void PlayState::update(void)
 				_gameOver = true;
 
 			//Update score text
-			_theApp._textManager.get_text("p2ScoreText") -> setString("Player 2: " + std::to_string(_paddleHeight));//set to _p2Score
-		}else if( _ballYPos + _ball.getRadius() * 2 > _theApp._windowHeight or _ballYPos < 0 )//ball collides with bottom or top respectively
+			_theApp._textManager.get_text("p2ScoreText") -> setString("Player 2: " + std::to_string(_p2Score));//set to _p2Score
+		}else if( _ballYPos + _ball.getRadius() * 2 > _theApp._windowHeight or _ballYPos < 0 ){//ball collides with bottom or top respectively
+			// Play sound
+			_theApp._soundManager.play_sound("Bounce");
+
 			_ballYVel *= -1;
+		}
 		// Check if the ball has collided with the paddles
 		else if( paddle1Rect.intersects(ballRect) or paddle2Rect.intersects(ballRect))
 		{
@@ -273,16 +290,25 @@ void PlayState::update(void)
 			}
 
 			if(hitsX){
+				// Play sound
+				_theApp._soundManager.play_sound("Bounce");
+
 				_ballXPos -= 2 * _ballXVel;
 				_ballXVel *= -1;
 			}
 
 			if(hitsBottom){
+				// Play sound
+				_theApp._soundManager.play_sound("Bounce");
+
 				_ballYVel = 5;
 				_ballYPos += 2 * _ballYVel;
 			}
 
 			if(hitsTop){
+				// Play sound
+				_theApp._soundManager.play_sound("Bounce");
+				
 				_ballYVel = -5;
 				_ballYPos += 2* _ballYVel;
 			}

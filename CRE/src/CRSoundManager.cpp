@@ -231,6 +231,17 @@ namespace CRE
         // Remove the sound from the map
         _soundMap.erase(soundID);
 
+        // Remove this key
+        std::vector<std::string>::iterator it;
+        for( it = _mapKeys.begin(); it <= _mapKeys.end(); it++ )
+        {
+            if( *it == soundID )
+            {
+                _mapKeys.erase(it);
+                break;
+            }
+        }
+
         // Deallocate the memory for the sound
         delete thisSound;
 

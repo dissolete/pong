@@ -17,7 +17,7 @@ namespace CRE
 		while(not _texts.empty()){
 
 			//Get the text at the back of the vector and then removes it
-			Text *currText = _texts.back();
+			Text * currText = _texts.back();
 			_texts.pop_back();
 
 			delete currText;
@@ -114,17 +114,15 @@ namespace CRE
 
 	void TextManager::remove_text(std::string textID)
 	{
-		//creates an iterator of Text pointers
-		std::vector<CRE::Text *>::iterator itr = _texts.begin();
-		while(itr != _texts.end()){
+		for(auto it = _texts.begin(); it <= _texts.end(); it++){
 			//if the iterator is on the passed ID, remove that Text
-			if((*itr) -> get_ID() == textID){
+			if((*it) -> get_ID() == textID){
 
 				// Get a pointer to this text
-				Text * thisText = (*itr);
+				Text * thisText = (*it);
 
 				// Remove text from the list
-				_texts.erase(itr);
+				_texts.erase(it);
 
 				// Delete the text object
 				delete thisText;
@@ -135,7 +133,7 @@ namespace CRE
 				//No longer need to loop, assumes each textID is unique
 				break;
 			}
-			itr++;
+			
 		}
 	}
 
