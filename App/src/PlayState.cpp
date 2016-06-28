@@ -35,6 +35,8 @@ void PlayState::init(void)
 {
 	CRE::State::init();
 
+
+
 	/*switch(_theApp._statManager.get_difficulty()){
 
 		case CRE::DIFF_EASY:
@@ -48,12 +50,12 @@ void PlayState::init(void)
 
 		/*default:
 			_paddleHeight = 60;
-			break;*/
-	if(_theApp._statManager.get_difficulty() == CRE::DIFF_HARD){
-		_paddleHeight = 30;
-	} else {
-		_paddleHeight = 60;
-	}
+	// 		break;*/
+	// if(_theApp._statManager.get_difficulty() == CRE::DIFF_HARD){
+	// 	_paddleHeight = 30;
+	// } else {
+	// 	_paddleHeight = 60;
+	// }
 
 	//}
 
@@ -63,6 +65,18 @@ void PlayState::init(void)
 		{
 				_paddleSprite1.setTexture(_paddleTexture);
 				_paddleSprite2.setTexture(_paddleTexture);
+
+				// Set the size of the sprites based on the game difficulty
+				if( _theApp._statManager.get_difficulty() == CRE::DIFF_HARD )
+				{
+					_paddleSprite1.setScale(1, .5);
+					_paddleSprite2.setScale(1, .5);
+				}
+				else
+				{
+					_paddleSprite1.setScale(1, 1);
+					_paddleSprite2.setScale(1, 1);
+				}
 				_ball.setRadius(10);
 		
 				_ball.setTexture(&_ballTexture);
