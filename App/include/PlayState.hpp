@@ -7,6 +7,7 @@
 #include "PongApp.hpp"
 #include "CRState.hpp"
 #include "CRTypes.hpp"
+#include "CRConstants.hpp"
 
 class PlayState : public CRE::State
 {
@@ -71,8 +72,10 @@ class PlayState : public CRE::State
 
 	private:
 
+		bool _gameOver;
+		
 		const int _paddleWidth = 20;
-		const int _paddleHeight = 60;
+		int _paddleHeight;//60 by default
 		const int _vel = 5;
 
 		int _paddle1Vel, _paddle2Vel, _paddle1Pos, _paddle2Pos, _ballXPos, _ballYPos, 

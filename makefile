@@ -69,6 +69,9 @@ $(BIN)/CRSoundManager.o: $(SRC)/CRSoundManager.cpp $(INC)/CRSoundManager.hpp
 $(BIN)/MenuState.o: $(APPSRC)/MenuState.cpp $(APPINC)/MenuState.hpp
 	$(CC) $(CFLAGS) $(APPSRC)/MenuState.cpp -o $(BIN)/MenuState.o
 
+$(BIN)/CRStatManager.o: $(SRC)/CRStatManager.cpp $(INC)/CRStatManager.hpp
+	$(CC) $(CFLAGS) $(SRC)/CRStatManager.cpp -o $(BIN)/CRStatManager.o
+
 .PHONY: run clean clean-o git-clean help
 
 run: $(BIN)/$(TARGET)

@@ -12,6 +12,9 @@ namespace CRE
 		_splashTexture.loadFromFile(_splashFilename);
 		_splashSprite.setTexture(_splashTexture);
 		_splashSprite.setPosition(0, 0);
+		//Resizes the sprite to fit the window size
+		_splashSprite.setScale(_theApp._windowWidth / _splashSprite.getLocalBounds().width, 
+					_theApp._windowHeight / _splashSprite.getLocalBounds().height);
 	}
 
 	SplashState::~SplashState(void)

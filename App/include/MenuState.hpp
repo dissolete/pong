@@ -7,6 +7,7 @@
 #include "PongApp.hpp"
 #include "CRState.hpp"
 #include "CRTypes.hpp"
+#include "CRConstants.hpp"
 
 class MenuState : public CRE::State
 {
@@ -74,7 +75,6 @@ class MenuState : public CRE::State
 		bool _atMainMenu;
 		bool _atDifficultyScreen;
 		bool _playGame;
-		bool _normalDiff;
 
 		sf::Vector2i _mousePos;
 };
