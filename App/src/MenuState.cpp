@@ -1,5 +1,6 @@
 #include "CRApp.hpp"
 #include "MenuState.hpp"
+#include "CRConstants.hpp"
 
 MenuState::MenuState(std::string stateID, CRE::App & theApp) :
 	CRE::State(stateID, theApp),
@@ -18,7 +19,6 @@ void MenuState::init()
 	_atMainMenu = true;
 	_atDifficultyScreen = true;
 	_playGame = false;
-	_normalDiff = true;
 
 	// Add texts
 	_theApp._textManager.add_text("Title", "Pong", sf::Vector2f(_theApp._windowWidth / 2, 40), 30);
@@ -61,7 +61,7 @@ void MenuState::handle_events(sf::Event theEvent)
 		else if( _theApp._textManager.get_text("EasyMode")->getGlobalBounds().contains(_mousePos.x, _mousePos.y) and _atDifficultyScreen )
 		{
 			// Difficulty set
-			_normalDiff = true;
+			_theApp._statManager.set_difficulty(CRE::DIFF_EASY);
 
 			// Set flags
 			_atMainMenu = true;
@@ -70,7 +70,7 @@ void MenuState::handle_events(sf::Event theEvent)
 		else if( _theApp._textManager.get_text("HardMode")->getGlobalBounds().contains(_mousePos.x, _mousePos.y) and _atDifficultyScreen )
 		{
 			// Difficulty set
-			_normalDiff = false;
+			_theApp._statManager.set_difficulty(CRE::DIFF_HARD);
 
 			// Set flags
 			_atMainMenu = true;

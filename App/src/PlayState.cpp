@@ -2,12 +2,14 @@
 
 #include "CRApp.hpp"
 #include "PlayState.hpp"
+#include "CRConstants.hpp"
 
 PlayState::PlayState(const std::string stateID, CRE::App& theApp) :
 	CRE::State(stateID, theApp),
 	_paddleTexture(),
 	_paddleSprite1(),
 	_paddleSprite2(),
+	_paddleHeight(60),
 	_ballTexture(),
 	_ball(0),
 	_paddle1Vel(0),
@@ -32,6 +34,28 @@ PlayState::~PlayState()
 void PlayState::init(void)
 {
 	CRE::State::init();
+
+	/*switch(_theApp._statManager.get_difficulty()){
+
+		case CRE::DIFF_EASY:
+			_paddleHeight = 60;
+			break;
+
+		case CRE::DIFF_HARD:
+			_paddleHeight = 30;
+			//for some reason _paddleHeight never gets set to 30 even though difficulty is set to hard
+			break;
+
+		/*default:
+			_paddleHeight = 60;
+			break;*/
+	if(_theApp._statManager.get_difficulty() == CRE::DIFF_HARD){
+		_paddleHeight = 30;
+	} else {
+		_paddleHeight = 60;
+	}
+
+	//}
 
 	if( _paddleTexture.loadFromFile("resources/white_texture.png", sf::IntRect(10, 10, _paddleWidth, _paddleHeight)) )
 	{
@@ -60,7 +84,8 @@ void PlayState::init(void)
 				//add text
 				_theApp._textManager.add_text("p1ScoreText", "Player 1: 0", sf::Vector2f(70, _theApp._windowHeight - 20), 20);
 				_theApp._textManager.add_text("p2ScoreText", "Player 2: 0", sf::Vector2f(_theApp._windowWidth - 70, _theApp._windowHeight - 20), 20);
-				_theApp._textManager.add_text("gameOverText", "Game Over", sf::Vector2f(_theApp._windowWidth / 2, _theApp._windowHeight / 2), 30);
+				_theApp._textManager.add_text("gameOverText", "Game Over", sf::Vector2f(_theApp._windowWidth / 2, _theApp._windowHeight / 2 - 15), 30);
+				_theApp._textManager.add_text("winnerText", "Player _ Wins!", sf::Vector2f(_theApp._windowWidth / 2, _theApp._windowHeight / 2 + 15), 30);
 
 				//Initialize data member values
 				_gameOver = false;
@@ -177,7 +202,7 @@ void PlayState::update(void)
 			_ballYVel = -5;
 
 			//Update score text
-			_theApp._textManager.get_text("p1ScoreText") -> setString("Player 1: " + std::to_string(_p1Score));
+			_theApp._textManager.get_text("p1ScoreText") -> setString("Player 1: " + std::to_string(_theApp._statManager.get_difficulty()));//set to _p1Score
 			if(_p1Score == 7)
 				_gameOver = true;
 
@@ -193,7 +218,7 @@ void PlayState::update(void)
 				_gameOver = true;
 
 			//Update score text
-			_theApp._textManager.get_text("p2ScoreText") -> setString("Player 2: " + std::to_string(_p2Score));
+			_theApp._textManager.get_text("p2ScoreText") -> setString("Player 2: " + std::to_string(_paddleHeight));//set to _p2Score
 		}else if( _ballYPos + _ball.getRadius() * 2 > _theApp._windowHeight or _ballYPos < 0 )//ball collides with bottom or top respectively
 			_ballYVel *= -1;
 		// Check if the ball has collided with the paddles
@@ -274,11 +299,12 @@ void PlayState::draw(void)
 
 		if(_gameOver){
 			if(_p1Score == 7){
-				_theApp._textManager.get_text("gameOverText") -> setString("Game Over\nPlayer 1 Wins!");
+				_theApp._textManager.get_text("winnerText") -> setString("Player 1 Wins!");
 			} else {
-				_theApp._textManager.get_text("gameOverText") -> setString("Game Over\nPlayer 2 Wins!");
+				_theApp._textManager.get_text("winnerText") -> setString("Player 2 Wins!");
 			}
 			_theApp._textManager.draw_text("gameOverText");
+			_theApp._textManager.draw_text("winnerText");
 		}
 	}
 }
